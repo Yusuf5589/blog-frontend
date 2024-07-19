@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from "react";
 
-function Index() {
+function Navbar() {
+  const [loginStatus, setLoginStatus] = useState(false);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
@@ -55,19 +57,18 @@ function Index() {
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                 <a href={process.env.URL}>
-                <img
-                  className="h-8 w-auto"
-                  src="/Image/kle.jpeg"
-                  alt="Your Company"
-                />
+                  <img
+                    className="h-8 w-auto"
+                    src="/Image/kle.jpeg"
+                    alt="Your Company"
+                  />
                 </a>
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   <a
                     href="#"
-                    className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                    aria-current="page"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Home
                   </a>
@@ -75,26 +76,18 @@ function Index() {
                     href="#"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
-                    Team
+                    Kvkk
                   </a>
                   <a
                     href="#"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
-                    Projects
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Calendar
+                    Privacy Policy
                   </a>
                 </div>
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-
               <div className="relative ml-3">
                 <div>
                   <button
@@ -123,33 +116,33 @@ function Index() {
                     aria-labelledby="user-menu-button"
                     tabIndex="-1"
                   >
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-0"
-                    >
-                      Your Profile
-                    </a>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-1"
-                    >
-                      Settings
-                    </a>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-2"
-                    >
-                      Sign out
-                    </a>
+                    {loginStatus && loginStatus ? (
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-2"
+                        onClick={() => {
+                          setLoginStatus(false);
+                        }}
+                      >
+                        Login
+                      </a>
+                    ) : (
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-2"
+                        onClick={() => {
+                            setLoginStatus(true);
+                          }}
+                      >
+                        Sign out
+                      </a>
+                    )}
                   </div>
                 )}
               </div>
@@ -162,28 +155,22 @@ function Index() {
             <div className="space-y-1 px-2 pb-3 pt-2">
               <a
                 href="#"
-                className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+                className="block rounded-md px-3 py-2 text-base font-medium text-white"
                 aria-current="page"
               >
-                Dashboard
+                Home
               </a>
               <a
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Team
+                Kvkk
               </a>
               <a
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Projects
-              </a>
-              <a
-                href="#"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-              >
-                Calendar
+                Privacy Policy
               </a>
             </div>
           </div>
@@ -193,4 +180,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Navbar;
