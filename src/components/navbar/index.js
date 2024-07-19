@@ -73,13 +73,13 @@ function Navbar() {
                     Home
                   </a>
                   <a
-                    href="#"
+                    href={process.env.URL+"kvkk"}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Kvkk
                   </a>
                   <a
-                    href="#"
+                    href={process.env.URL+"privacy_policy"}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Privacy Policy
@@ -161,13 +161,13 @@ function Navbar() {
                 Home
               </a>
               <a
-                href="#"
+                href={process.env.URL+"kvkk"}
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
                 Kvkk
               </a>
               <a
-                href="#"
+                href={process.env.URL+"privacy_policy"}
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
                 Privacy Policy
