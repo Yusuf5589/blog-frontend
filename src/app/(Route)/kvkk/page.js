@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import kvkkCss from "@/app/style/kvkk.module.css";
 import { getData } from "@/components/getData";
+import Navbar from "@/components/navbar/Index";
 
 
 function Page() {
@@ -10,7 +11,7 @@ function Page() {
 
 
   useEffect(() => {
-    getData("http://localhost:8181/api/kvkk/get").then((res)=> setData(res.data));
+    getData(process.env.APIURL+"kvkk/get").then((res)=> setData(res.data));
 }, []);
 
   return (
@@ -32,6 +33,8 @@ function Page() {
           </div>
         </div>
       </h1>
+
+
     </div>
   );
 }

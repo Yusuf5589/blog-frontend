@@ -9,7 +9,7 @@ function Page() {
 
 
   useEffect(() => {
-    getData("http://localhost:8181/api/privacy/get").then((res)=> setData(res.data));
+    getData(process.env.APIURL+"privacy/get").then((res)=> setData(res.data));
 }, []);
 
   return (
