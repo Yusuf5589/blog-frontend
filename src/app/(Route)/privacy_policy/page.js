@@ -1,25 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { getData } from "@/components/getData";
 
 function Page() {
   const [data, setData] = useState();
 
-  const getPrivacy = async () => {
-    const response = await axios.get("http://localhost:8181/api/privacy/get");
-    console.log(response);
-    setData(response.data);
-    if (response.data) {
-      const loader = document.getElementById("globalLoader");
-      if (loader) {
-        loader.remove();
-      }
-    }
-  };
+
 
   useEffect(() => {
-    getPrivacy();
-  }, []);
+    getData("http://localhost:8181/api/privacy/get").then((res)=> setData(res.data));
+}, []);
 
   return (
     <div>

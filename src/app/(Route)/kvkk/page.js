@@ -1,26 +1,17 @@
 "use client";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import kvkkCss from "@/app/style/kvkk.module.css";
+import { getData } from "@/components/getData";
+
+
 function Page() {
   const [data, setData] = useState();
 
-  const getKvkk = async () => {
-    const response = await axios.get("http://localhost:8181/api/kvkk/get");
-    console.log(response);
-    setData(response.data);
 
-    if (response.data) {
-      const loader = document.getElementById("globalLoader");
-      if (loader){
-        loader.remove();
-      }
-    }
-  };
-  
+
   useEffect(() => {
-    getKvkk();
-  }, []);
+    getData("http://localhost:8181/api/kvkk/get").then((res)=> setData(res.data));
+}, []);
 
   return (
     <div>
