@@ -1,6 +1,7 @@
 "use client";
 import { getData } from "@/components/getData";
 import { getCategory } from "@/components/getData";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 function Page() {
@@ -18,7 +19,13 @@ function Page() {
   }, []);
 
   const getCategoryF = (slug) => {
-    getCategory(process.env.APIURL + "category/get/" + slug).then((res) => 
+    getCategory(process.env.APIURL + "category/get/" + slug).then((res) =>
+      setCategoryDataSlug(res.data)
+    );
+  };
+
+  const getBlogAll = () => {
+    getData(process.env.APIURL + "blog/get").then((res) =>
       setCategoryDataSlug(res.data)
     );
   };
@@ -32,6 +39,12 @@ function Page() {
         />
       </div>
       <div className="w-[85%] xl:w-[65%] bg-slate-950 mx-auto mt-2 rounded-lg p-5 grid grid-cols-2 lg:grid-cols-6">
+        <button
+          className="p-3 bg-slate-800 text-white text-center rounded-xl mx-2 hover:bg-slate-950 :bg-white mb-2 mt-2"
+          onClick={() => getBlogAll()}
+        >
+          All
+        </button>
         {categoryData &&
           categoryData.api &&
           categoryData.api.map((item) => (
@@ -56,20 +69,22 @@ function Page() {
                 key={item.id}
                 class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3"
               >
-                <a href={"http://localhost:3000/detail/"+item.id}>
+                <Link href={`${process.env.NEXT_PUBLIC_URL}detail/${item.id}`}>
                   <img class="rounded-t-lg " src={item.image_url} alt="" />
-                </a>
+                </Link>
                 <div class="p-5">
-                  <a href={"http://localhost:3000/detail/"+item.id}>
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_URL}detail/${item.id}`}
+                  >
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {item.title}
                     </h5>
-                  </a>
+                  </Link>
                   <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  w-full max-w-xs line-clamp-3">
                     {item.description}
                   </p>
-                  <a
-                    href={"http://localhost:3000/detail/"+item.id}
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_URL}detail/${item.id}`}
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Details
@@ -88,7 +103,7 @@ function Page() {
                         d="M1 5h12m0 0L9 1m4 4L9 9"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))
@@ -97,22 +112,24 @@ function Page() {
             blogData.api.map((item) => (
               <div
                 key={item.id}
-                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3"
+                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-3 mt-2"
               >
-                <a href={"http://localhost:3000/detail/"+item.id}>
+                <Link href={`${process.env.NEXT_PUBLIC_URL}detail/${item.id}`}>
                   <img class="rounded-t-lg " src={item.image_url} alt="" />
-                </a>
+                </Link>
                 <div class="p-5">
-                  <a href={"http://localhost:3000/detail/"+item.id}>
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_URL}detail/${item.id}`}
+                  >
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {item.title}
                     </h5>
-                  </a>
+                  </Link>
                   <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  w-full max-w-xs line-clamp-3">
                     {item.description}
                   </p>
-                  <a
-                    href={"http://localhost:3000/detail/"+item.id}
+                  <Link
+                    href={`${process.env.NEXT_PUBLIC_URL}detail/${item.id}`}
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Details
@@ -131,7 +148,7 @@ function Page() {
                         d="M1 5h12m0 0L9 1m4 4L9 9"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
