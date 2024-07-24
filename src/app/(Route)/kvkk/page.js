@@ -8,8 +8,6 @@ import Navbar from "@/components/navbar/Index";
 function Page() {
   const [data, setData] = useState();
 
-
-
   useEffect(() => {
     getData(process.env.APIURL+"kvkk/get").then((res)=> setData(res.data));
 }, []);
