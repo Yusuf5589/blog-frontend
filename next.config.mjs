@@ -1,6 +1,7 @@
 export default {
     reactStrictMode: false,
     env: {
-      APIURL: process.env.APIURL,
+      NEXT_PUBLIC_URL: "http://localhost:3000/",
+      APIURL: "http://localhost:8181/api/"
     }
   };

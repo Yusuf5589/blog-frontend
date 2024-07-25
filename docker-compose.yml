@@ -1,13 +1,13 @@
-version: "3.8"
+version: '3'
 
 services:
-  app:
-    build: 
+  nextjs:
+    build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./:/app
-    environment:
-      NODE_ENV: development
+      - .:/app
+      - /app/node_modules
+    command: npm run dev

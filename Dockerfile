@@ -1,12 +1,23 @@
+# Resmi Node.js 20 görüntüsünü kullanıyoruz
 FROM node:20-alpine
 
+# Uygulama dizinini oluştur ve çalışma dizini olarak ayarla
 WORKDIR /app
 
-COPY package.json ./
+# package.json ve package-lock.json dosyalarını kopyala
+COPY package*.json ./
+
+# Bağımlılıkları yükle
 RUN npm install
 
+# Uygulamanın geri kalanını kopyala
 COPY . .
 
-EXPOSE 3000
+# Uygulamanın derlenmesi
+RUN /bin/sh -c /bin/sh -c npm run build
 
-CMD ["npm", "run", "dev"]
+# Uygulamayı başlat
+CMD ["npm", "start"]
+
+# Uygulamanın dışarıya açılacak olan portu
+EXPOSE 3000
