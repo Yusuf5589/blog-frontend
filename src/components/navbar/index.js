@@ -59,7 +59,7 @@ function Navbar() {
               <div className="flex flex-shrink-0 items-center">
                 <Link href={process.env.NEXT_PUBLIC_URL}>
                   <img
-                    className="h-8 w-auto"
+                    className="h-8 w-auto transparent"
                     src="/Image/kle.jpeg"
                     alt="Your Company"
                   />
@@ -74,13 +74,13 @@ function Navbar() {
                     Home
                   </Link>
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_URL}kvkk`}
+                    href={`${process.env.NEXT_PUBLIC_URL}contract/kvkk`}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Kvkk
                   </Link>
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_URL}privacy_policy`}
+                    href={`${process.env.NEXT_PUBLIC_URL}contract/privacy-policy`}
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
                     Privacy Policy
@@ -120,13 +120,13 @@ function Navbar() {
                 Home
               </Link>
               <Link
-                href={`${process.env.NEXT_PUBLIC_URL}kvkk`}
+                href={`${process.env.NEXT_PUBLIC_URL}contract/kvkk`}
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
                 Kvkk
               </Link>
               <Link
-                href={`${process.env.NEXT_PUBLIC_URL}privacy_policy`}
+                href={`${process.env.NEXT_PUBLIC_URL}contract/privacy-policy`}
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
                 Privacy Policy
