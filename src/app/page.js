@@ -1,4 +1,3 @@
-import CategoryData from "@/components/CategoryData";
 import GetBlogData from "@/components/GetBlogData";
 import { getData } from "@/components/getData";
 import Link from "next/link";
@@ -10,7 +9,7 @@ export async function getCategoryBlogF(id){
 }
 
 export async function getBlogAllF(){
-  return await getData("http://localhost:8181/api/blog/get");
+  return await getData(process.env.APIURL + "blog/get");
 }
 
 export default async function Home( props ) {
