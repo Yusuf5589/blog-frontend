@@ -16,7 +16,7 @@ export async function getBlogAllF(){
 export default async function Home( props ) {
 
   const categoryData = await getData(process.env.APIURL + "category/get")
-  const blogData = await getData("http://localhost:8181/api/blog/get");
+  const blogData = await getData(process.env.APIURL + "blog/get");
   // console.log("Pageden veri geliyor",  getSlugBlogData);
   console.log(blogData);
 

@@ -17,7 +17,7 @@ COPY . .
 RUN /bin/sh -c /bin/sh -c npm run build
 
 # Uygulamayı başlat
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 
 # Uygulamanın dışarıya açılacak olan portu
 EXPOSE 3000
