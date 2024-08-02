@@ -5,7 +5,7 @@
 # 2) sözleşme kısımları backend olarak da doğru değil. slug olarak contract/slug şeklinde bir rota oluşturup,
 # apiye ssr olacak şekilde istek atılmalı sayfa url'sinden slug yakalanıp.
 # 3) genel olarak client side istek atılmıs, server side'a çevirilmeli.
-4) eğer client'ta atılması gerekiyorsa da swr kullanılmalı.
+# 4) eğer client'ta atılması gerekiyorsa da swr kullanılmalı.
 # 5) loading için swr'ın parametresi kullanılmalı, ek olarak set etmemiz gerekli değil.
 # 6) blog detay url olarak /blog/slug şeklinde olmalı. seo açısından slug ile istek atılmalı, id değil.
 # 7) formlar react-hook-form ve yup kullanılarak revize edilmeli.

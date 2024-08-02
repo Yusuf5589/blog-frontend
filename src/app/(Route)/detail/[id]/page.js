@@ -1,17 +1,30 @@
 "use client";
-import { getData } from "@/components/getData";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import useSWR from "swr";
+
+// fetcher fonksiyonu
+const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 function Page() {
-  const [blogData, setBlogData] = useState();
-  const [categoryData, setCategoryData] = useState();
-  const [commentData, setCommentData] = useState();
-  const [successMessage, setSuccessMessage] = useState("");
   const params = useParams();
+  const { data: blogData, error: blogError } = useSWR(
+    `${process.env.APIURL}blog/get/${params.id}`,
+    fetcher
+  );
+  const { data: categoryData, error: categoryError } = useSWR(
+    blogData ? `${process.env.APIURL}category/get/first/${blogData.api.category_id}` : null,
+    fetcher
+  );
+  const { data: commentData, error: commentError } = useSWR(
+    `${process.env.APIURL}comment/get/${params.id}`,
+    fetcher
+  );
+
+  const [successMessage, setSuccessMessage] = useState("");
 
   const {
     register,
@@ -24,7 +37,7 @@ function Page() {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post(process.env.APIURL + "comment/send", {
+      const response = await axios.post(`${process.env.APIURL}comment/send`, {
         comments: data.comment,
         comments_mail: data.email,
         blogslug: blogData.api.slug,
@@ -40,20 +53,6 @@ function Page() {
       console.error("Error submitting comment:", error);
     }
   };
-
-  useEffect(() => {
-    getData("blog/get/" + params.id).then((res) => {
-      setBlogData(res);
-      getData("category/get/first/" + res.api.category_id).then((res) => {
-        setCategoryData(res);
-      });
-    });
-
-    getData("comment/get/" + params.id).then((res) => {
-      setCommentData(res);
-    });
-  }, [params.id]);
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {blogData && blogData.api && (
@@ -124,7 +123,7 @@ function Page() {
                       required: "Email is required",
                       pattern: {
                         value:
-                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                         message: "Please enter a valid email",
                       },
                     })}
