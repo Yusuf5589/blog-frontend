@@ -7,20 +7,20 @@ import { useForm } from "react-hook-form";
 import useSWR from "swr";
 
 // fetcher fonksiyonu
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url) => axios.get(process.env.NEXT_PUBLIC_APIURL + url).then((res) => res.data);
 
 function Page() {
   const params = useParams();
   const { data: blogData, error: blogError } = useSWR(
-    `${process.env.APIURL}blog/get/${params.id}`,
+    `blog/get/${params.id}`,
     fetcher
   );
   const { data: categoryData, error: categoryError } = useSWR(
-    blogData ? `${process.env.APIURL}category/get/first/${blogData.api.category_id}` : null,
+    blogData ? `category/get/first/${blogData.api.category_id}` : null,
     fetcher
   );
   const { data: commentData, error: commentError } = useSWR(
-    `${process.env.APIURL}comment/get/${params.id}`,
+    `comment/get/${params.id}`,
     fetcher
   );
 
@@ -37,10 +37,10 @@ function Page() {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post(`${process.env.APIURL}comment/send`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_APIURL}comment/send`, {
         comments: data.comment,
         comments_mail: data.email,
-        blogslug: blogData.api.slug,
+        blog_slug: blogData.api.slug,
       });
       reset();
       setSuccessMessage("Comment submitted successfully!");
@@ -113,7 +113,7 @@ function Page() {
                 )}
                 <div>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     className={`w-full px-4 py-3 border ${
                       errors.email ? "border-red-500" : "border-gray-300"
@@ -121,11 +121,6 @@ function Page() {
                     placeholder="Your email"
                     {...register("email", {
                       required: "Email is required",
-                      pattern: {
-                        value:
-                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        message: "Please enter a valid email",
-                      },
                     })}
                   />
                   {errors.email && (

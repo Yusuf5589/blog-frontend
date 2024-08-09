@@ -27,8 +27,8 @@ function Navbar() {
                 <span className="sr-only">Open main menu</span>
 
                 {/* className={`h-6 w-6 ${mobileMenuOpen ? "hidden" : "block"}`} */}
-                <Image className={`${mobileMenuOpen ? "hidden" : "block"}`} src={"hamburgermenu.svg"} height={24} width={24}></Image>
-                <Image className={`${mobileMenuOpen ? "block" : "hidden"}`} src={"cancel.svg"} height={24} width={24}></Image>
+                <Image className={`${mobileMenuOpen ? "hidden" : "block"}`} src={"hamburgermenu.svg"} height={24} width={24} alt="Hamburger Menu"></Image>
+                <Image className={`${mobileMenuOpen ? "block" : "hidden"}`} src={"cancel.svg"} height={24} width={24} alt="Hamburger Menu"></Image>
 
 
               </button>
@@ -41,7 +41,7 @@ function Navbar() {
                     height={500}
                     className="h-8 w-auto transparent"
                     src={"/Image/kle-logo.png"}
-                    alt="Your Company"
+                    alt="Kle-Logo"
                   />
                 </Link>
               </div>
