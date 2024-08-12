@@ -1,21 +1,43 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { getData } from "../getData";
 import { getBlogAllF, getCategoryBlogF } from "@/app/page";
 import Image from "next/image";
 
-export default function GetBlogData({ categoryData, getBlogData }) {
+export default function GetBlogData({ categoryData, getBlogData, params }) {
   const [blogData, setBlogData] = useState(getBlogData);
-
   const [categoryDatas, setCategoryData] = useState(categoryData);
+
+  // URL parametrelerinden kategori slug' ı al
+  const getCategoryFromURL = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('category');
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const slug = getCategoryFromURL();
+      if (slug) {
+        await getCategoryBlog(slug);
+      } else {
+        await getBlogAll();
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const getBlogAll = async () => {
     setBlogData(await getBlogAllF());
   };
 
-  const getCategoryBlog = async (id) => {
-    setBlogData(await getCategoryBlogF(id));
+  const getCategoryBlog = async (slug) => {
+    window.history.pushState(
+      null,
+      "",
+      `?category=${slug}`
+    );
+    setBlogData(await getCategoryBlogF(slug));
   };
 
   return (
@@ -23,7 +45,10 @@ export default function GetBlogData({ categoryData, getBlogData }) {
       <div className="w-[85%] xl:w-[65%] bg-slate-950 mx-auto mt-2 rounded-lg p-5 grid grid-cols-2 lg:grid-cols-6">
         <button
           className="p-3 bg-slate-800 text-white text-center rounded-xl mx-2 hover:bg-slate-950 :bg-white mb-2 mt-2"
-          onClick={() => getBlogAll()}
+          onClick={() => {
+            window.history.pushState(null, "", "/");
+            getBlogAll();
+          }}
         >
           All
         </button>
@@ -32,7 +57,7 @@ export default function GetBlogData({ categoryData, getBlogData }) {
             <button
               key={item.id}
               className="p-3 bg-slate-800 text-white text-center rounded-xl mx-2 hover:bg-slate-950 :bg-white mb-2 mt-2"
-              onClick={() => getCategoryBlog(item.id)}
+              onClick={() => getCategoryBlog(item.slug)}
             >
               {item.name}
             </button>

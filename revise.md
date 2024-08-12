@@ -24,10 +24,10 @@
 
 
 
-1) detay sayfas ı server side olacak. sadece comment i ç in swr kullan ı lacak
-2) category k ı sm ı nda fetch s ı k ı nt ı var ek olarak url'den al ı nacak ş ekilde d ü zenlenecek
+# 1) detay sayfas ı server side olacak. sadece comment i ç in swr kullan ı lacak
+# 2) category k ı sm ı nda fetch s ı k ı nt ı var ek olarak url'den al ı nacak ş ekilde d ü zenlenecek
 # 3) resim gelmeyen k ı s ı mlarda placeholder eklenecek.
 # 4) next config env'ye ba ğ lanacak.
 # 5) class name hatas ı d ü zeltilecek
 # 6) Image is missing required "alt" property. Please add Alternative Text to describe the image for screen readers and search engines.
-7) meta data detay sayfalar ı i ç in dinamik olacak.
+# 7) meta data detay sayfalar ı i ç in dinamik olacak.

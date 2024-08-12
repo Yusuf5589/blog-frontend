@@ -1,33 +1,21 @@
-import GetBlogData from "@/components/GetBlogData";
+import GetBlogData from "@/components/getBlogData";
 import { getData } from "@/components/getData";
-import Link from "next/link";
 
-
-
-export async function getCategoryBlogF(id){
-  return await getData("category/get/" + id);
+export async function getCategoryBlogF(slug){
+  return await getData("category/get/" + slug);
 }
 
 export async function getBlogAllF(){
   return await getData("blog/get");
 }
 
-export default async function Home( props ) {
+export default async function Home() {
+  const categoryData = await getData("category/get");
+  // const blogData = await getBlogAllF(); // Blog verilerini al
 
-  const categoryData = await getData("category/get")
-  const blogData = await getData("blog/get");
-  // console.log("Pageden veri geliyor",  getSlugBlogData);
-  console.log(blogData);
-
-
-  
   return (
     <div>
-
-
-
-        <GetBlogData categoryData={categoryData} getBlogData={blogData}/>
-
+      <GetBlogData categoryData={categoryData}/>
     </div>
   );
 }

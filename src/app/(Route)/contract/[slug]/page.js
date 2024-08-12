@@ -2,7 +2,11 @@ import { getData } from "@/components/getData";
 import React from "react";
 
   
-
+export const metadata = {
+  title: "Contract Page",
+  description: "Buras ı s ö zle ş me sayfam.",
+  authors: [{name: "Yusuf Kapkiner"}]
+};
  
 export default async function Contract({ params }) {
 
